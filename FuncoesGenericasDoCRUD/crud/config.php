@@ -1,5 +1,6 @@
 <?php
-
+/*Dados para fazer conexao com banco de dados
+ */
 define("HOST", "localhost");
 define("USER", "root");
 define("PASSWORD", "");

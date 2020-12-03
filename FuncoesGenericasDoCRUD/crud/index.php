@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--Proxima aula 
+    Aula 06 
+    Link : https://mjailton.com.br/campus_antigo/grade/ver/1100/c2a4824ba98bb504240365aee329d71f/?f=140
+-->
 <html lang="en">
     <head>
         <title>Swapping Songs</title>
@@ -6,12 +10,11 @@
     <body>
         <?php
         require ("crud.php");
-        $conexao = openConection();
-        $sql = "INSERT INTO `produto` (produto, valor, descricao) VALUES ('Memoria RAM 8 GB', 500.00 , 'Memoria ram para notebooks  da marca Gigabyte 8 GB slote DDR4')";
-        $qry = executar($sql);
-        echo "<pre>";
-        var_dump($qry);
-        echo "</pre>";
+        $dados = consultar('produto', 'where id_produto = 3', 'produto');
+
+        echo"<pre>";
+        var_dump($dados);
+        echo"</pre>"
         ?>
     </body>
 </html>
