@@ -49,11 +49,17 @@ function insertData($tabela, array $dados) {
 
 function updateData($tabela, array $dados, $condicao) {
     $conexao = openConection();
-    /*ESSA SOLUCAO NAO FUNCIONOU POIS NAO POSSIBILITA QUE SEJA ALTERO MAIS DE UM CAMPO POR VEZ
-    $campos = implode("`, `", array_keys($dados)); //Pega as chaves do array 
-    $valores = "'" . implode("','", $dados) . "'"; //Pega os valores do array*/
 
-    $sql = "UPDATE `$tabela` SET `$campos` = $valores WHERE $condicao  ";
-    $result = executar($sql);
-    return $result;
+    /* ESSA SOLUCAO NAO FUNCIONOU POIS NAO POSSIBILITA QUE SEJA ALTERO MAIS DE UM CAMPO POR VEZ
+      $campos = implode("`, `", array_keys($dados)); //Pega as chaves do array
+      $valores = "'" . implode("','", $dados) . "'"; //Pega os valores do array */
+
+    foreach ($dados as $chave => $valor)//Farrer os dados
+        $campos[] = "{$chave}` = '{$valor}' ";
+        
+    $campos = implode(", ",$campos);
+    $sql = "UPDATE `$tabela` SET `{$campos} WHERE `$tabela`.`{$condicao}  ";
+    executar($sql);
+    
+    return $sql;
 }

@@ -10,21 +10,22 @@
     <body>
         <?php
         require ("crud.php");
-         $dados = array(
-          "produto"   => "Mouse",
-          "valor"     => 190.00,
-          "descricao" => "Esse mouse indicado para gamers."
-          );
-          $insere = insertData("produto", $dados); 
+
+        /*$dados = array(
+            "produto" => "Mouse",
+            "valor" => 190.00,
+            "descricao" => "Esse mouse indicado para gamers."
+        );
+        $insere = insertData("produto", $dados);*/
 
         $dados = array(
-          
-            "descricao" => "Memoria para pc"
+            "descricao" => "indicado para gamers."
         );
-        $altera = updateData("produto", $dados, "id_produto = 48");
+
+        $altera = updateData("produto", $dados, "id_produto` = 57");
         var_dump($altera);
-     
-        echo"</br>forma certa UPDATE `produto` SET `descricao` = 'indicado para gamers.' WHERE `produto`.`id_produto` = 10";
+
+        echo"</br>------------- UPDATE `produto` SET `descricao` = 'indicado para gamers.' WHERE `produto`.`id_produto` = 10";
         ?>
     </body>
 </html>
