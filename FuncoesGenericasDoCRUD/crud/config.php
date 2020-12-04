@@ -1,7 +1,7 @@
 <?php
 /*Dados para fazer conexao com banco de dados
  */
-define("HOST", "localehost");
+define("HOST", "localhost");
 define("USER", "root");
 define("PASSWORD", "");
 define("DATABASE", "sisproduto");
