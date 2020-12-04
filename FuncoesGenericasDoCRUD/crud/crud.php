@@ -36,7 +36,7 @@ function consultar($tabela, $condicao = NULL, $campos = "*") {//Funcoa para exec
     }
 }
 
-function inserir($tabela, array $dados) {
+function insertData($tabela, array $dados) {
     $conexao = openConection();
 
     $campos = implode(", ", array_keys($dados)); //Pega as chaves do array 
@@ -45,4 +45,15 @@ function inserir($tabela, array $dados) {
 
     executar($sql);
     return executar($sql);
+}
+
+function updateData($tabela, array $dados, $condicao) {
+    $conexao = openConection();
+    /*ESSA SOLUCAO NAO FUNCIONOU POIS NAO POSSIBILITA QUE SEJA ALTERO MAIS DE UM CAMPO POR VEZ
+    $campos = implode("`, `", array_keys($dados)); //Pega as chaves do array 
+    $valores = "'" . implode("','", $dados) . "'"; //Pega os valores do array*/
+
+    $sql = "UPDATE `$tabela` SET `$campos` = $valores WHERE $condicao  ";
+    $result = executar($sql);
+    return $result;
 }
