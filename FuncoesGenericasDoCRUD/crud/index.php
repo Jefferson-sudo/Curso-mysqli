@@ -10,10 +10,15 @@
     <body>
         <?php
         require ("crud.php");
-        $dados = consultar('produto', 'where id_produto = 3', 'produto');
-
+        $dados = array(
+            "produto"   => "Mouse",
+            "valor"     => 190.00,
+            "descricao" => "Esse mouse indicado para gamers."
+        );
+        $insere = inserir("produto", $dados);
+        
         echo"<pre>";
-        var_dump($dados);
+        var_dump($insere);
         echo"</pre>"
         ?>
     </body>
