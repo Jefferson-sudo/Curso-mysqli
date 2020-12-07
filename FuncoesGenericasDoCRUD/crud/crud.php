@@ -3,28 +3,30 @@
 require ("config.php"); //Conexao com banco de dados
 
 function openConection() {//Abrir conexao
-    $conexao = @mysqli_connect(HOST, USER, PASSWORD, DATABASE) or die(mysqli_connect_error());
-    mysqli_set_charset($conexao, CHARSET);
-    return $conexao;
+    $conection = @mysqli_connect(HOST, USER, PASSWORD, DATABASE) or die(mysqli_connect_error());
+    mysqli_set_charset($conection, CHARSET);
+    return $conection;
 }
 
-function closeConection($conexao) {//Fechar conexao
-    @mysqli_close($conexao) or die(mysqli_error($conexao));
+//Fechar conexao
+function closeConection($conection) {
+    @mysqli_close($conection) or die(mysqli_error($conection));
 }
 
 //Funcoa para executar o sql
-function executar($sql) {
-    $conexao = openConection();
+function runsql($sql) {
+    $conection = openConection();
 
-    $qry = @mysqli_query($conexao, $sql) or die(mysqli_erro($conexao));
+    $qry = @mysqli_query($conection, $sql) or die(mysqli_erro($conection));
 
-    closeConection($conexao);
+    closeConection($conection);
     return $qry;
 }
 
-function consultar($tabela, $condicao = NULL, $campos = "*") {//Funcoa para executar SELECT 
+//Funcoa para fazer busca SELECT
+function queryData($tabela, $condicao = NULL, $campos = "*") {
     $sql = "SELECT {$campos} FROM {$tabela} {$condicao}";
-    $qry = executar($sql);
+    $qry = runsql($sql);
 
     if (!mysqli_num_rows($qry)) {
         return FALSE;
@@ -36,17 +38,18 @@ function consultar($tabela, $condicao = NULL, $campos = "*") {//Funcoa para exec
     }
 }
 
+//Funcao para insercao de dados
 function insertData($tabela, array $dados) {
-    $conexao = openConection();
+     openConection();
 
     $campos = implode(", ", array_keys($dados)); //Pega as chaves do array 
     $valores = "'" . implode("','", $dados) . "'"; //Pega os valores do array
     $sql = "INSERT INTO `$tabela`({$campos}) VALUES ({$valores})";
 
-    executar($sql);
-    return executar($sql);
+    runsql($sql);
 }
 
+//Atualizar dados
 function updateData($tabela, array $dados, $condicao) {
     $conexao = openConection();
 
@@ -59,14 +62,15 @@ function updateData($tabela, array $dados, $condicao) {
 
     $campos = implode(", ", $campos);
     $sql = "UPDATE `$tabela` SET `{$campos} WHERE `$tabela`.`{$condicao}  ";
-    executar($sql);
+    runsql($sql);
 
     return $sql;
 }
 
-function deletar($tabela, $condicao) {
+//Deletar dados
+function deleteData($tabela, $condicao) {
     openConection();
     $sql = "DELETE  FROM  `$tabela` WHERE $condicao";
-    $qry = executar($sql);
+    $qry = runsql($sql);
     return $qry;
 }
