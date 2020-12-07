@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<!--Proxima aula 
-    Aula 06 
-    Link : https://mjailton.com.br/campus_antigo/grade/ver/1100/c2a4824ba98bb504240365aee329d71f/?f=140
--->
-<html lang="en">
+
+<html lang="pt-br">
     <head>
         <title>Swapping Songs</title>
     </head>
@@ -16,7 +13,7 @@
             "valor" => 190.00,
             "descricao" => "Esse mouse indicado para gamers."
         );
-        $insere = insertData("produto", $dados);*/
+        $insere = insertData("produto", $dados);
 
         $dados = array(
             "descricao" => "indicado para gamers."
@@ -26,6 +23,13 @@
         var_dump($altera);
 
         echo"</br>------------- UPDATE `produto` SET `descricao` = 'indicado para gamers.' WHERE `produto`.`id_produto` = 10";
+       */
+        
+        $deletar = deletar("produto", "id_produto = 47");
+        echo"<pre>";
+        var_dump($deletar);
+        echo"</pŕe>";
+        echo"Forma corr  DELETE FROM `produto` WHERE id_produto = '48' ";
         ?>
     </body>
 </html>

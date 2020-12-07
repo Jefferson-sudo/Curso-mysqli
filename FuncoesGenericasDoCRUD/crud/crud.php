@@ -56,10 +56,17 @@ function updateData($tabela, array $dados, $condicao) {
 
     foreach ($dados as $chave => $valor)//Farrer os dados
         $campos[] = "{$chave}` = '{$valor}' ";
-        
-    $campos = implode(", ",$campos);
+
+    $campos = implode(", ", $campos);
     $sql = "UPDATE `$tabela` SET `{$campos} WHERE `$tabela`.`{$condicao}  ";
     executar($sql);
-    
+
     return $sql;
+}
+
+function deletar($tabela, $condicao) {
+    openConection();
+    $sql = "DELETE  FROM  `$tabela` WHERE $condicao";
+    $qry = executar($sql);
+    return $qry;
 }
